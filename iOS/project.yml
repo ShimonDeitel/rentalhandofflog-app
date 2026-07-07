@@ -1,0 +1,75 @@
+name: RentalHandoffLog
+options:
+  bundleIdPrefix: com.shimondeitel.handofflog
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: "W7Q885Q59C"
+    CODE_SIGN_STYLE: Automatic
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: "YES"
+targets:
+  RentalHandoffLog:
+    type: application
+    platform: iOS
+    sources:
+      - path: RentalHandoffLog
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.handofflog
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_FILE: RentalHandoffLog/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: "YES"
+        GENERATE_INFOPLIST_FILE: "NO"
+  RentalHandoffLogTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: RentalHandoffLogTests
+      - path: RentalHandoffLog.storekit
+    dependencies:
+      - target: RentalHandoffLog
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.handofflog.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+  RentalHandoffLogUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: RentalHandoffLogUITests
+    dependencies:
+      - target: RentalHandoffLog
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.handofflog.uitests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+schemes:
+  RentalHandoffLog:
+    build:
+      targets:
+        RentalHandoffLog: all
+        RentalHandoffLogTests: [test]
+        RentalHandoffLogUITests: [test]
+    run:
+      config: Debug
+      storeKitConfiguration: RentalHandoffLog.storekit
+    test:
+      config: Debug
+      storeKitConfiguration: RentalHandoffLog.storekit
+      targets:
+        - RentalHandoffLogTests
+        - RentalHandoffLogUITests
+    archive:
+      config: Release
